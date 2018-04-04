@@ -77,7 +77,6 @@ var shouldQuit = app.makeSingleInstance(function(commandLine, workingDirectory) 
 
 if (shouldQuit) {
   app.quit();
-  return;
 }
 
 // This method will be called when Electron has finished

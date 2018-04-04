@@ -30,7 +30,7 @@
             },
             "electronPackagerConfig": {
                 "packageManager": "yarn",
-                "icon":"src/icon_dark.ico"
+                "icon": "src/icon_dark.ico"
             },
             "electronWinstallerConfig": {
                 "name": "tia"
