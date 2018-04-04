@@ -1,0 +1,81 @@
+{
+    "name": "tia",
+    "productName": "tia",
+    "version": "1.0.0",
+    "description": "My Electron application description",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish",
+        "lint": "eslint src --color"
+    },
+    "keywords": [],
+    "author": "Tony",
+    "license": "MIT",
+    "config": {
+        "forge": {
+            "make_targets": {
+                "win32": [
+                    "squirrel"
+                ],
+                "darwin": [
+                    "zip"
+                ],
+                "linux": [
+                    "deb",
+                    "rpm"
+                ]
+            },
+            "electronPackagerConfig": {
+                "packageManager": "yarn",
+                "icon":"src/icon_dark.ico"
+            },
+            "electronWinstallerConfig": {
+                "name": "tia"
+            },
+            "electronInstallerDebian": {},
+            "electronInstallerRedhat": {},
+            "github_repository": {
+                "owner": "",
+                "name": ""
+            },
+            "windowsStoreConfig": {
+                "packageName": "",
+                "name": "tia"
+            }
+        }
+    },
+    "dependencies": {
+        "ali-oss": "^5.0.0",
+        "async": "^2.5.0",
+        "body-parser": "~1.17.1",
+        "cheerio": "^1.0.0-rc.2",
+        "chromeless": "^1.5.1",
+        "cookie-parser": "~1.4.3",
+        "cors": "^2.8.4",
+        "ejs": "~2.5.6",
+        "electron-compile": "^6.4.2",
+        "express": "^4.15.5",
+        "html-docx-js": "^0.3.1",
+        "morgan": "~1.8.1",
+        "nodemailer": "^4.0.1",
+        "object-path": "^0.11.4",
+        "parse": "^1.11.1",
+        "request": "^2.81.0",
+        "socket.io-client": "^2.1.0"
+    },
+    "devDependencies": {
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "electron-forge": "^5.1.1",
+        "electron-prebuilt-compile": "1.8.4",
+        "eslint": "3",
+        "eslint-config-airbnb": "15",
+        "eslint-plugin-import": "2",
+        "eslint-plugin-jsx-a11y": "5",
+        "eslint-plugin-react": "7"
+    }
+}
