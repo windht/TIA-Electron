@@ -14,7 +14,10 @@ let cors = require('cors');
 let task = require('./task');
 let iconPath = path.join(__dirname,'icon.png');
 let fs = require('fs');
-let TIA_Home_Dir = path.join(app.getPath('home'),"TIA");
+
+let TIA_TEMP_DIR = path.join(app.getPath("temp"),"TIA_TEMP")
+let TIA_HOME_DIR = path.join(app.getPath('home'),"TIA");
+
 let socket = require('socket.io-client')('http://45.76.223.40:3000');
 
 
@@ -164,12 +167,20 @@ api.listen(10531);
 
 
 // Create The Home Dir For TIA
-if (!fs.existsSync(TIA_Home_Dir)){
+if (!fs.existsSync(TIA_HOME_DIR)){
   console.log("TIA Home DIR Not Exists, Creating")
-  fs.mkdirSync(TIA_Home_Dir);
+  fs.mkdirSync(TIA_HOME_DIR);
 }
 else {
   console.log("TIA Home DIR Exists, Jumping")
+}
+    
+if (!fs.existsSync(TIA_TEMP_DIR)){
+  console.log("TEMP DIR Not Exists, Creating")
+  await fs.mkdir(TIA_TEMP_DIR);
+}
+else {
+  console.log("TEMP DIR Exists, Jumping")
 }
 
 
