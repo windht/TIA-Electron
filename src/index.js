@@ -177,7 +177,7 @@ else {
     
 if (!fs.existsSync(TIA_TEMP_DIR)){
   console.log("TEMP DIR Not Exists, Creating")
-  await fs.mkdir(TIA_TEMP_DIR);
+  fs.mkdirSync(TIA_TEMP_DIR);
 }
 else {
   console.log("TEMP DIR Exists, Jumping")
