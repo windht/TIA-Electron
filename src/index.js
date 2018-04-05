@@ -13,6 +13,7 @@ let path = require('path');
 let cors = require('cors');
 let task = require('./task');
 let iconPath = path.join(__dirname,'icon.png');
+let trayPath = path.join(__dirname,'icon_16x16.png');
 let fs = require('fs');
 
 let TIA_TEMP_DIR = path.join(app.getPath("temp"),"TIA_TEMP")
@@ -45,8 +46,8 @@ const createWindow = () => {
   //   // when you should delete the corresponding element.
   //   mainWindow = null;
   // });
-
-  tray = new Tray(iconPath);
+  app.dock.hide();
+  tray = new Tray(trayPath);
   const contextMenu = Menu.buildFromTemplate([
     {
       label: 'Get TIA Machine ID',
