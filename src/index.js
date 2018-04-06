@@ -1,14 +1,15 @@
 import { clipboard, app, BrowserWindow, Tray, Menu, Notification } from 'electron';
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let appWindows = {};
 let mainWindow;
 let tray;
 
 let socket = require('./runtime/socket');
 let http = require('./runtime/http');
 let APP_PATH = require('./runtime/path');
+let dir = require('./runtime/dir');
 
+dir.init();
 // app.commandLine.appendSwitch('remote-debugging-port', '9222')
 
 const createTray = () => {
@@ -55,7 +56,10 @@ if (shouldQuit) {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createTray);
+app.on('ready', function(){
+  
+  createTray();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {

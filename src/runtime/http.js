@@ -2,9 +2,12 @@ let express = require("express");
 let api = express();
 let router = express.Router();
 let bodyParser = require('body-parser');
-let task = require('./task');
 let Notification = require("electron").Notification;
 let cors = require("cors");
+
+let APP_PATH = require("./path");
+let task = require('./task');
+let FRA = require("./fra");
 
 router.options('/*',cors())
 router.post('/*',cors());
@@ -22,7 +25,7 @@ router.post("/zone",function(req,res){
     task.run(req.body);
     let options = {
       title:"TIA New Loop",
-      icon: iconPath,
+      icon: APP_PATH.ICON_PATH,
       body: "The Loop Started Running Now"
     };
       
@@ -44,20 +47,7 @@ router.post("/zone",function(req,res){
 
 router.post("/app",function(req,res){
   var project = req.body;
-  if (!appWindows[project.objectId]){
-    appWindows[project.objectId] = new BrowserWindow(project.data.window);
-    appWindows[project.objectId].loadURL('https://thebuilder.hk/board/desktop?project_id='+project.objectId);
-    appWindows[project.objectId].on('closed', () => {
-      appWindows[project.objectId] = null;
-    });
-  }
-  else {
-    appWindows[project.objectId].loadURL('https://thebuilder.hk/board/desktop?project_id='+project.objectId);
-  }
-
-  if (project.data.debug){
-    appWindows[project.objectId].webContents.openDevTools();
-  }
+  FRA.create(project);
 })
 
 api.use(bodyParser.json())
