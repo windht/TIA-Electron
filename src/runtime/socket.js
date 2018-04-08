@@ -1,7 +1,7 @@
+let Notification = require("electron").Notification;
 let socket = require('socket.io-client')('http://45.76.223.40:3000');
 let task = require('./task');
 let APP_PATH = require("./path");
-let Notification = require("electron").Notification;
 
 // Doing Socket Connection
 socket.on('connect', function(){
