@@ -19,6 +19,7 @@ module.exports = function(input, meta, output) {
             eval(meta.script);
         } catch(err){
             chromeless.end();
+            output(false);
             console.log(err);
         }
     });
