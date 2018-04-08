@@ -1,3 +1,6 @@
+import { BrowserWindow } from 'electron';
+
+
 let appWindows = {};
 
 module.exports = {
