@@ -7,12 +7,12 @@ let APP_PATH = require("./path");
 socket.on('connect', function(){
 	console.log("Connected With TIA Server");
 	// socket.emit("join",{
-	// 	deviceId:"tia-pc-"
+  //   deviceId:"tia-pc-tony"
 	// })
 });
 
 socket.on('message',function(data){
-  console.log(data);
+  // console.log(data);
   if (data.zone_id){
     console.log("Incoming Remote Task")
     try {
