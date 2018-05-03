@@ -36,6 +36,16 @@ Recommend Using [VSCode](https://code.visualstudio.com/), a preset vs launch con
 
 ## How To Add Modules
 
+Install **base modules** with your favorite package manager (I'm using yarn here)
+
+    yarn install package-name --save
+    
+Add new **modules** by creating a new file under `src/modules` folder ends with `.js` (Chectout `empty.js` in the folder)
+
+You can directly copy one `empty.js` and write logic inside the function.
+
+Make sure your function calls `output()` after the task is done or error occurs, or it will break the whole queue.
+
 ## Features
 
 * A Tray App that runs in background.
