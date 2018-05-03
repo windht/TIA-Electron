@@ -15,12 +15,16 @@ dir.init();
 const createTray = () => {
   
   let isWin = process.platform === "win32";
+  let isMac = process.platform === "darwin";
 
   if (isWin){
     tray = new Tray(APP_PATH.ICON_PATH);
   }
-  else {
+  else if (isMac) {
     app.dock.hide();
+    tray = new Tray(APP_PATH.MAC_TRAY_PATH);
+  }
+  else {
     tray = new Tray(APP_PATH.MAC_TRAY_PATH);
   }
 

@@ -43,21 +43,22 @@ function runChain(chain,startIndex){
 		}
 	}
 
-	
-	for (var j=0;j<chain.relations.length;j++){
-		// if (j==0){
-		// 	Loops.sequence.push(chain.relations[j].from_loop_id)
-		// }
-		// Loops.sequence.push(chain.relations[j].to_loop_id)
-		Loops[chain.relations[j].from_loop_id].next.push(chain.relations[j].to_loop_id)
+	if (chain.relations){
+		for (var j=0;j<chain.relations.length;j++){
+			// if (j==0){
+			// 	Loops.sequence.push(chain.relations[j].from_loop_id)
+			// }
+			// Loops.sequence.push(chain.relations[j].to_loop_id)
+			Loops[chain.relations[j].from_loop_id].next.push(chain.relations[j].to_loop_id)
+		}
 	}
 
 	console.log("The Task Is Running At Sequence ");
 	console.log(Loops.sequence);
 
 	Loops.zone_id = chain.zone_id;
-	Loops.start_at = Math.floor(Date.now() / 1000)
-
+	Loops.start_at = Math.floor(Date.now() / 1000);
+	Loops.masterInput = chain.input;
 
 	if (!startIndex){
 		startIndex = 0

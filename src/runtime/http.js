@@ -35,14 +35,8 @@ router.post("/zone",function(req,res){
   catch(err){
     console.log(err);
   }
-	
+  
 	res.send("Triggered!");
-
-	// Notification
-	
-	// notification.on('show',function () {
-	//   setTimeout(function() {notification.close();}, 2000);
-	// })
 })
 
 router.post("/app",function(req,res){

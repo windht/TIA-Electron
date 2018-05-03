@@ -2,7 +2,7 @@
     "name": "tia",
     "productName": "tia",
     "version": "1.0.0",
-    "description": "My Electron application description",
+    "description": "TIA Electron",
     "main": "src/index.js",
     "scripts": {
         "start": "electron-forge start",
@@ -55,6 +55,7 @@
         "chromeless": "^1.5.1",
         "cookie-parser": "~1.4.3",
         "cors": "^2.8.4",
+        "crypto-js": "^3.1.9-1",
         "ejs": "~2.5.6",
         "electron-compile": "^6.4.2",
         "express": "^4.15.5",
@@ -65,7 +66,10 @@
         "object-path": "^0.11.4",
         "parse": "^1.11.1",
         "request": "^2.81.0",
-        "socket.io-client": "^2.1.0"
+        "socket.io-client": "^2.1.0",
+        "bluebird": "^3.3.1",
+        "config": "^1.28.1",
+        "moment": "^2.13.0"
     },
     "devDependencies": {
         "babel-plugin-transform-async-to-generator": "^6.24.1",

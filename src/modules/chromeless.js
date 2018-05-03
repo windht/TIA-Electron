@@ -18,10 +18,13 @@ module.exports = function(input, meta, output) {
         try {
             eval(meta.script);
         } catch(err){
-            chromeless.end();
+            // chromeless.end();
             output(false);
             console.log(err);
         }
+    }).catch(function(err){
+        output(false);
+        console.log(err);
     });
 
     // let chromeless = new Chromeless({
