@@ -8,6 +8,7 @@ let socket = require('./runtime/socket');
 let http = require('./runtime/http');
 let APP_PATH = require('./runtime/path');
 let dir = require('./runtime/dir');
+let task = require('./runtime/task');
 
 dir.init();
 // app.commandLine.appendSwitch('remote-debugging-port', '9222')
@@ -57,12 +58,18 @@ if (shouldQuit) {
   app.quit();
 }
 
+
+const handleQueue = () => {
+  task.handleQueue();
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', function(){
   
   createTray();
+  handleQueue();
 });
 
 // Quit when all windows are closed.
