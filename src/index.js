@@ -4,13 +4,16 @@ import { clipboard, app, BrowserWindow, Tray, Menu, Notification } from 'electro
 let mainWindow;
 let tray;
 
+let dir = require('./runtime/dir');
+dir.init();
+
+
 let socket = require('./runtime/socket');
 let http = require('./runtime/http');
 let APP_PATH = require('./runtime/path');
-let dir = require('./runtime/dir');
 let task = require('./runtime/task');
 
-dir.init();
+
 // app.commandLine.appendSwitch('remote-debugging-port', '9222')
 
 const createTray = () => {

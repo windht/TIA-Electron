@@ -9,6 +9,10 @@ let APP_PATH = require("./path");
 let task = require('./task');
 let FRA = require("./fra");
 
+let db = require("./db");
+let Queue = db.get("queue").write();
+let Logs = db.get("logs").write();
+
 router.options('/*',cors())
 router.post('/*',cors());
 router.get('/*',cors());

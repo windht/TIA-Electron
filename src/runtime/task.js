@@ -1,13 +1,14 @@
 let modules = require("../modules/index");
 let db = require("./db");
-let Executing = false;
+
 let Queue = db.get("queue").write();
 let Logs = db.get("logs").write();
+let Executing = db.get("executing").write();
+
 
 module.exports = {
 	run:_do,
 	single:doTask,
-
 	handleQueue:handleQueue
 }
 
@@ -20,7 +21,7 @@ function moduleCheck(){
 }
 
 function runChain(chain,startIndex){
-	if (Executing){
+	if (Executing.state){
 		Queue.push(chain);
 		db.get("queue").write();
 		return;
@@ -29,7 +30,7 @@ function runChain(chain,startIndex){
 	let Loops = {};
 	Loops.console = [];
 	consoleLog("Chain Starts",Loops);
-	Executing = true;
+	
 	
 
 	
@@ -71,8 +72,17 @@ function runChain(chain,startIndex){
 		startIndex = 0
 	}
 
+	Executing.loops = Loops;
+	delete chain.loops;
+	Executing.chain = chain;
+	Executing.state = true;
+
+	db.get("executing").write()
+
 	doTask(Loops,Loops[Loops.sequence[startIndex]],chain.input,function(output){
-		Executing = false;
+		Executing.loops = {};
+		Executing.state = false;
+		db.get("executing").write()
 
 		consoleLog("Chain Ends",Loops);
 		if (Queue.length>0){
@@ -145,6 +155,9 @@ function doTask(Loops,task,input,END){
 function consoleLog(log,Loops){
 	console.log(log);
 	Loops.console.push(log);
+
+	Executing.loops = Loops;
+	db.get("executing").write()
 }
 
 function writeLog(Loops){

@@ -2,6 +2,7 @@ let Notification = require("electron").Notification;
 let socket = require('socket.io-client')('http://45.76.223.40:3000');
 let task = require('./task');
 let APP_PATH = require("./path");
+let db = require("./db");
 
 // Doing Socket Connection
 socket.on('connect', function(){
@@ -32,5 +33,39 @@ socket.on('message',function(data){
     }
   }
 })
+
+socket.on("request",function(data){
+  var request = data.body;
+
+  console.log("A Socket Request Coming In, Handling")
+
+  socketHandle(request,function(response){
+    socket.emit("response",{
+      id:data.id,
+      data:response
+    })
+  })
+
+  
+})
+
+
+
+function socketHandle(req,res){
+
+  if (req.type=='executing'){
+    res(db.get("executing").value())
+  }
+  else if(req.type='ping'){
+    res('pong')
+  }
+  else if(req.type=='queue'){
+    res(db.get("queue").value())
+  }
+  else {
+    res(false)
+  }
+
+}
 
 module.exports = socket;
