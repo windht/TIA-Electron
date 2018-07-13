@@ -56,7 +56,7 @@ function socketHandle(req,res){
   if (req.type=='executing'){
     res(db.get("executing").value())
   }
-  else if(req.type='ping'){
+  else if(req.type=='ping'){
     res('pong')
   }
   else if(req.type=='queue'){

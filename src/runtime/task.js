@@ -22,6 +22,7 @@ function moduleCheck(){
 
 function runChain(chain,startIndex){
 	if (Executing.state){
+		chain.queueAt = new Date();
 		Queue.push(chain);
 		db.get("queue").write();
 		return;
@@ -81,6 +82,7 @@ function runChain(chain,startIndex){
 
 	doTask(Loops,Loops[Loops.sequence[startIndex]],chain.input,function(output){
 		Executing.loops = {};
+		Executing.chain = {};
 		Executing.state = false;
 		db.get("executing").write()
 
@@ -166,6 +168,13 @@ function writeLog(Loops){
 }
 
 function handleQueue(){
+
+	Executing.loops = {};
+	Executing.chain = {};
+	Executing.state = false;
+	db.get("executing").write()
+
+
 	if (Queue.length>0){
 		console.log("Queue Not Empty, Start Doing")
 		runChain(Queue.shift())
