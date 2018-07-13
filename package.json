@@ -50,6 +50,7 @@
     "dependencies": {
         "ali-oss": "^5.0.0",
         "async": "^2.5.0",
+        "axios": "^0.18.0",
         "bluebird": "^3.3.1",
         "body-parser": "~1.17.1",
         "cheerio": "^1.0.0-rc.2",
@@ -69,6 +70,7 @@
         "nodemailer": "^4.0.1",
         "object-path": "^0.11.4",
         "parse": "^1.11.1",
+        "puppeteer": "^1.2.0",
         "request": "^2.81.0",
         "socket.io-client": "^2.1.0"
     },

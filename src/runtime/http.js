@@ -8,6 +8,7 @@ let cors = require("cors");
 let APP_PATH = require("./path");
 let task = require('./task');
 let FRA = require("./fra");
+let CDP = require("./cdp");
 
 let db = require("./db");
 let Queue = db.get("queue").write();
@@ -46,6 +47,10 @@ router.post("/zone",function(req,res){
 router.post("/app",function(req,res){
   var project = req.body;
   FRA.create(project);
+})
+
+router.post("/cdp",function(req,res){
+  CDP.run(req.body);
 })
 
 api.use(bodyParser.json())
